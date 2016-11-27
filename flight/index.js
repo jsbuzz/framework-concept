@@ -10,6 +10,10 @@ Flight.GC = GC;
 import Component from './component';
 Flight.Component = Component;
 
+// Repository
+import Repository from './repository';
+Flight.Repository = Repository;
+
 // eventPools
 import { EventPool, DataEventPool, getOrCreateEventPool, detachEventPool } from './event-pool';
 Flight.EventPool = EventPool;
@@ -28,6 +32,6 @@ Flight.basicEventOf = basicEventOf;
 import DOM from './DOM';
 Flight.DOM = DOM;
 
-// Patch
-import Patch from './patch';
-Flight.Patch = Patch;
+// Debugger
+import Debugger from './debugger';
+Flight.Debugger = Debugger;

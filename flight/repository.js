@@ -1,14 +1,14 @@
-import Flight from './';
+import {getOrCreateEventPool} from './event-pool';
 
 class Repository {
     on(path) {
-        return Flight.getOrCreateEventPool(path);
+        return getOrCreateEventPool(path);
     }
 
     static attachTo(eventPoolPath) {
         const instance = new this();
 
-        instance.eventPool = Flight.getOrCreateEventPool(eventPoolPath);
+        instance.eventPool = getOrCreateEventPool(eventPoolPath);
         instance.listen();
 
         return instance;
