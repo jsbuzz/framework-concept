@@ -6,9 +6,12 @@ let __componentId = 0;
 
 class Component {
 
-    constructor() {
+    constructor(...params) {
         this.componentId = ++__componentId;
+        this.init.apply(this, params);
     }
+
+    init() {}
 
     get view() {
         return this._view;
