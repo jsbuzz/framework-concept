@@ -35,3 +35,13 @@ Flight.DOM = DOM;
 // Debugger
 import Debugger from './debugger';
 Flight.Debugger = Debugger;
+
+// System events
+import { triggerSystemEvent, Ready } from './system-events';
+Flight.System = {};
+Flight.System.Ready = Ready;
+
+Flight.app = startupScript => {
+    startupScript();
+    triggerSystemEvent(Flight.System.Ready);
+};
