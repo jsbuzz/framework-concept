@@ -22,11 +22,11 @@ Flight.getOrCreateEventPool = getOrCreateEventPool;
 Flight.detachEventPool = detachEventPool;
 
 // events
-import { Event, eventType, eventOfType, basicEventOf } from './event';
+import { Event, eventType, eventOfType, basicEvent } from './event';
 Flight.Event = Event;
 Flight.eventType = eventType;
 Flight.eventOfType = eventOfType;
-Flight.basicEventOf = basicEventOf;
+Flight.basicEvent = basicEvent;
 
 // DOM
 import DOM from './DOM';
@@ -37,11 +37,13 @@ import Debugger from './debugger';
 Flight.Debugger = Debugger;
 
 // System events
-import { triggerSystemEvent, Ready } from './system-events';
-Flight.System = {};
-Flight.System.Ready = Ready;
+class System extends Component {};
+const _system = new System();
+Flight.System = {
+    Ready: basicEvent().alias('System:Ready')
+};
 
 Flight.app = startupScript => {
     startupScript();
-    triggerSystemEvent(Flight.System.Ready);
+    _system.on('data/system').trigger(new Flight.System.Ready());
 };
