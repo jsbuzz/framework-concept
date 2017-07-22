@@ -1,8 +1,8 @@
 const DOM = {};
 
-DOM.getElement = (element) => {
+DOM.getElement = (element, root) => {
     return typeof(element) == 'string' ?
-        document.querySelector(element) : element;
+        (root || document).querySelector(element) : element;
 };
 
 export default DOM;
