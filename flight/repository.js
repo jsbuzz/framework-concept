@@ -8,7 +8,10 @@ class Repository {
     init() {}
 
     on(path) {
-        return getOrCreateEventPool(path);
+        return path instanceof EventPool
+            ? path
+            : getOrCreateEventPool(path)
+            ;
     }
 
     static attachTo(eventPoolPath) {
