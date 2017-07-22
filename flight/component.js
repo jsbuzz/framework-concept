@@ -38,17 +38,18 @@ class Component {
     }
 
     on(path) {
-        if(path instanceof EventPool) {
-            return path;
-        }
+        return path instanceof EventPool
+            ? new EventPoolAccessor(this, path)
+            : new EventPoolAccessor(this, getOrCreateEventPool(path))
+            ;
+    }
 
-        if(!path || path == 'ui') {
-            return this.getOrCreateEventPool();
-        } else if(path.substring(0,3) === "ui:") {
-            let element = this.view.querySelector(path.substring(3));
-            return EventPool.forElement(element, this);
-        }
-        return new EventPoolAccessor(this, getOrCreateEventPool(path));
+    ui(query) {
+        let element = DOM.getElement(query);
+        return element
+            ? EventPool.forElement(element, this)
+            : null
+            ;
     }
 
     static attachTo(element) {
