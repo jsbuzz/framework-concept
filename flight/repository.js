@@ -1,4 +1,4 @@
-import {getOrCreateEventPool} from './event-pool';
+import {EventPool, getOrCreateEventPool} from './event-pool';
 
 class Repository {
     constructor(...params) {
