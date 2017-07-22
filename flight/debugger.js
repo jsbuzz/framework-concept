@@ -7,11 +7,16 @@ let actor = null;
 
 Debugger.init = function() {
 
-    // this.on()
+    // .on() and .ui()
     Component.prototype.$$on = Component.prototype.on;
     Component.prototype.on = function(path) {
         actor = this;
         return this.$$on(path);
+    };
+    Component.prototype.$$ui = Component.prototype.ui;
+    Component.prototype.ui = function(path) {
+        actor = this;
+        return this.$$ui(path);
     };
     Repository.prototype.$$on = Repository.prototype.on;
     Repository.prototype.on = function(path) {
