@@ -61,10 +61,11 @@ function handlerToString(handler) {
     if(handler.name) {
         return handler.name;
     }
-    return handler.length
-        ? handler.toString().match(/_this[0-9][.]([^(]*)[(]/).pop()
-        : 'Unknown'
-        ;
+    try {
+        return handler.toString().match(/_this[0-9][.]([^(]*)[(]/).pop();
+    } catch(e) {
+        return 'Unknown';
+    }
 }
 
 export default Debugger;
