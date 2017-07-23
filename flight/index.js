@@ -37,7 +37,7 @@ import Debugger from './debugger';
 Flight.Debugger = Debugger;
 
 // System events
-class System extends Component {};
+class System extends DataComponent {};
 const _system = new System();
 Flight.System = {
     Ready: basicEvent().alias('System:Ready')
