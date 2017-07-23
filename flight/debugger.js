@@ -1,5 +1,5 @@
-import Component from './component';
-import Repository from './repository';
+import DataComponent from './data-component';
+import UIComponent from './ui-component';
 import {EventPool} from './event-pool';
 
 const Debugger = {};
@@ -8,18 +8,18 @@ let actor = null;
 Debugger.init = function() {
 
     // .on() and .ui()
-    Component.prototype.$$on = Component.prototype.on;
-    Component.prototype.on = function(path) {
+    UIComponent.prototype.$$on = UIComponent.prototype.on;
+    UIComponent.prototype.on = function(path) {
         actor = this;
         return this.$$on(path);
     };
-    Component.prototype.$$ui = Component.prototype.ui;
-    Component.prototype.ui = function(path) {
+    UIComponent.prototype.$$ui = UIComponent.prototype.ui;
+    UIComponent.prototype.ui = function(path) {
         actor = this;
         return this.$$ui(path);
     };
-    Repository.prototype.$$on = Repository.prototype.on;
-    Repository.prototype.on = function(path) {
+    DataComponent.prototype.$$on = DataComponent.prototype.on;
+    DataComponent.prototype.on = function(path) {
         actor = this;
         return this.$$on(path);
     };
