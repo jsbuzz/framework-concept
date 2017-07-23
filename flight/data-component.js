@@ -1,6 +1,6 @@
 import {EventPool, getOrCreateEventPool} from './event-pool';
 
-class Repository {
+class DataComponent {
     constructor(...params) {
         this.init.apply(this, params);
     }
@@ -14,14 +14,18 @@ class Repository {
             ;
     }
 
-    static attachTo(eventPoolPath) {
+    static attachTo(eventPool) {
         const instance = new this();
 
-        instance.eventPool = getOrCreateEventPool(eventPoolPath);
+        instance.eventPool = eventPool instanceof EventPool
+            ? eventPool
+            : getOrCreateEventPool(eventPool)
+            ;
+
         instance.listen();
 
         return instance;
     }
 }
 
-export default Repository;
+export default DataComponent;

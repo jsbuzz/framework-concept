@@ -6,15 +6,15 @@ export default Flight;
 import GC from './gc';
 Flight.GC = GC;
 
-// Component
-import Component from './component';
-Flight.Component = Component;
+// DataComponent
+import DataComponent from './data-component';
+Flight.DataComponent = DataComponent;
 
-// Repository
-import Repository from './repository';
-Flight.Repository = Repository;
+// UIComponent
+import UIComponent from './ui-component';
+Flight.UIComponent = UIComponent;
 
-// eventPools
+// eventPool
 import { EventPool, DataEventPool, getOrCreateEventPool, detachEventPool } from './event-pool';
 Flight.EventPool = EventPool;
 Flight.DataEventPool = DataEventPool;

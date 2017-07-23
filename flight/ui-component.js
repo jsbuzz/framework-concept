@@ -4,7 +4,7 @@ import GC from './gc';
 
 let __componentId = 0;
 
-class Component {
+class UIComponent {
 
     constructor(...params) {
         this.componentId = ++__componentId;
@@ -83,4 +83,4 @@ class EventPoolAccessor {
 }
 
 
-export default Component;
+export default UIComponent;
