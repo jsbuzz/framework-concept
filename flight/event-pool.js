@@ -15,10 +15,12 @@ export class EventPool {
         let realHandler;
         if(typeof flightEvent == 'string') {
             realHandler = event => eventHandler(event);
-            this.element.addEventListener(
-                flightEvent,
-                realHandler
-            );
+            flightEvent.trim().split(/\s/).forEach(strEvent => {
+                this.element.addEventListener(
+                    strEvent,
+                    realHandler
+                );
+            })
         } else {
             realHandler = event => eventHandler(event.detail);
             this.element.addEventListener(
