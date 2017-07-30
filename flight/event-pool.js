@@ -31,8 +31,20 @@ export class EventPool {
         return realHandler;
     }
 
-    $(key) {
-        return getOrCreateEventPool(`${this.path}/#${key}`);
+    defineState(stateDefinition) {
+        this.__state || (this.__state = {});
+        this.state || (this.state = {});
+        Object.getOwnPropertyNames(stateDefinition).forEach((property) => {
+            this.__state[property] = null;
+            Object.defineProperty(this.state, property, {
+                get: () => this.__state[property],
+                enumerable: true,
+            });
+            const setters = stateDefinition[property](this.__state);
+            for(let i = 0; i < setters.length; i+=2) {
+                this.addEventListener(setters[i], setters[i+1]);
+            }
+        });
     }
 
     static forElement(element, component) {
