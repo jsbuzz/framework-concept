@@ -52,6 +52,13 @@ class UIComponent {
             ;
     }
 
+    static elementName() {
+        return this.name
+            .replace('Component','')
+            .replace(/[A-Z]/g, '-$&')
+            .toLowerCase().substr(1);
+    }
+
     static attachTo(element) {
         element = DOM.getElement(element);
 
@@ -61,6 +68,19 @@ class UIComponent {
         instance.listen();
 
         return instance;
+    }
+
+    static populate(parentElement) {
+        if(! parentElement instanceof Element) {
+            return false;
+        }
+
+        const elements = parentElement.querySelectorAll(this.elementName());
+        elements.forEach((element) => {
+            this.attachTo(element);
+        });
+
+        return elements;
     }
 }
 
