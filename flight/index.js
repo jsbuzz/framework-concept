@@ -39,11 +39,10 @@ Flight.Debugger = Debugger;
 // System events
 class System extends DataComponent {};
 const _system = new System();
-Flight.System = {
-    Ready: basicEvent().alias('System:Ready')
-};
+Flight.System = getOrCreateEventPool('data/system');
+Flight.System.Ready = basicEvent().alias('System:Ready');
 
 Flight.app = startupScript => {
     startupScript();
-    _system.on('data/system').trigger(new Flight.System.Ready());
+    _system.on(Flight.System).trigger(new Flight.System.Ready());
 };

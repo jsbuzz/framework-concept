@@ -75,7 +75,10 @@ class UIComponent {
             return false;
         }
 
-        const elements = parentElement.querySelectorAll(this.elementName());
+        let elements = parentElement.querySelectorAll(this.elementName());
+        if(parentElement.tagName.toLowerCase() == this.elementName()) {
+            elements = [parentElement];
+        }
         elements.forEach((element) => {
             this.attachTo(element);
         });
