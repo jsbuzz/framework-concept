@@ -1,3 +1,4 @@
+import Flight from './';
 
 Flight.Event.prototype.$$event = Flight.Event.prototype.event;
 Flight.Event.prototype.event = function() {
