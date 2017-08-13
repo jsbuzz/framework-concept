@@ -22,11 +22,15 @@ Flight.getOrCreateEventPool = getOrCreateEventPool;
 Flight.detachEventPool = detachEventPool;
 
 // events
-import { Event, eventType, eventOfType, basicEvent } from './event';
+import { Event, defineEvent, defineEventType, basicEvent } from './event';
 Flight.Event = Event;
-Flight.eventType = eventType;
-Flight.eventOfType = eventOfType;
+Flight.defineEvent = defineEvent;
+Flight.defineEventType = defineEventType;
 Flight.basicEvent = basicEvent;
+
+// clone
+import clone from './clone';
+Flight.clone = clone;
 
 // DOM
 import DOM from './DOM';
