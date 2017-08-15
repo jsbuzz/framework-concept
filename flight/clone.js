@@ -19,9 +19,7 @@ export default function clone(obj) {
     const copied = {};
 
     for(let key of Object.getOwnPropertyNames(obj)) {
-        if(typeof obj[key] != 'function') {
-            copied[key] = clone(obj[key]);
-        }
+        copied[key] = clone(obj[key]);
     }
 
     return copied;
