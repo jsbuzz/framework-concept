@@ -16,10 +16,7 @@ Flight.UIComponent = UIComponent;
 
 // eventPool
 import { EventPool, DataEventPool, getOrCreateEventPool, detachEventPool } from './event-pool';
-Flight.EventPool = EventPool;
-Flight.DataEventPool = DataEventPool;
-Flight.getOrCreateEventPool = getOrCreateEventPool;
-Flight.detachEventPool = detachEventPool;
+Flight.namespace = getOrCreateEventPool;
 
 // events
 import { Event, defineEvent, defineEventType, basicEvent } from './event';

@@ -1,6 +1,6 @@
 import DataComponent from './data-component';
 import UIComponent from './ui-component';
-import {EventPool} from './event-pool';
+import { EventPool } from './event-pool';
 
 const Debugger = {};
 let actor = null;

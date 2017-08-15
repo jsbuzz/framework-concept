@@ -45,7 +45,7 @@ class UIComponent {
     }
 
     ui(query) {
-        let element = DOM.getElement(query, this.view);
+        let element = DOM.getElement(query || this.view, this.view);
         return element
             ? EventPool.forElement(element, this)
             : null
