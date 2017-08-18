@@ -28,6 +28,10 @@ class UIComponent {
     listen() {}
 
     render() {
+        if(this.constructor.template) {
+            this.view = DOM.render(this.constructor.template);
+        }
+
         this.listen();
 
         return this.view;
@@ -59,12 +63,35 @@ class UIComponent {
             .toLowerCase().substr(1);
     }
 
-    static attachTo(element) {
+    static withTemplate(template) {
+        return class extends this {
+            static __setTemplate(template) {
+                this.template = template;
+                return this;
+            }
+        }.__setTemplate(template);
+    }
+
+    static attachTo(element, ...params) {
         element = DOM.getElement(element);
 
-        const instance = new this(element);
+        const instance = new this(...params);
         instance._attached = true;
-        instance.view = element;
+
+        const renderedTemplate = this.template
+            ? DOM.render(this.template)
+            : null
+            ;
+
+        if(!renderedTemplate) {
+            instance.view = element;
+        } else if(renderedTemplate.tagName == element.tagName) {
+            element.replaceWith(renderedTemplate);
+            instance.view = renderedTemplate;
+        } else {
+            instance.view = element;
+            instance.view.append(renderedTemplate);
+        }
         instance.listen();
 
         return instance;
@@ -104,6 +131,5 @@ class EventPoolAccessor {
         return this.eventPool.trigger(event);
     }
 }
-
 
 export default UIComponent;
