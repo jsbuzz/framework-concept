@@ -1,4 +1,11 @@
-# Flight (v3)
+# This project has moved and became FiberJS
+New home: https://github.com/fiberjs/fiber-framework
+
+You can check out a demo app written in FiberJS here: https://github-repo-buzzer.herokuapp.com
+
+Don't forget to open devtools and have a look at the debug messages :)
+
+# Flight (v3 concept)
 
 ## Features
 - event-driven architecture
